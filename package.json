@@ -1,0 +1,48 @@
+{
+  "name": "leaflet-editable-drag",
+  "version": "1.0.0-beta.1",
+  "description": "drag functionality for leaflet-editable",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js",
+    "start": "npm run watch & ./node_modules/.bin/serve -p 3001",
+    "watch": "watchify -v -d example/js/app.js -o example/js/bundle.js",
+    "lint": "eslint ./src/",
+    "build-js": "cat ./node_modules/leaflet-path-drag/dist/L.Path.Drag-src.js ./src/Util.js ./src/Matrix.js ./src/Path.Transform.js > ./dist/L.Path.Transform-src.js",
+    "compress": "uglifyjs ./dist/L.Path.Transform-src.js -o ./dist/L.Path.Transform.js -m",
+    "build": "npm run lint && npm run build-js && npm run compress",
+    "release": "git push origin master && git checkout gh-pages && git merge master && git push origin gh-pages && npm publish"
+  },
+  "keywords": [
+    "leaflet",
+    "map",
+    "editing",
+    "drawing",
+    "dragging"
+  ],
+  "author": "Alexander Milevski <info@w8r.name>",
+  "license": "MIT",
+  "dependencies": {
+    "leaflet": "^1.0.0-beta.2",
+    "leaflet-editable": "github:leaflet/Leaflet.Editable#gh-pages",
+    "leaflet-path-drag": "^1.0.0-beta.2"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "eslint": "^2.7.0",
+    "serve": "^1.4.0",
+    "tape": "^4.5.1",
+    "watchify": "^3.7.0"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w8r/Leaflet.Editable.Drag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/w8r/Leaflet.Editable.Drag/issues"
+  },
+  "homepage": "https://github.com/w8r/Leaflet.Editable.Drag#readme"
+}
