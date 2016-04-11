@@ -3,7 +3,49 @@
  * @author Alexander Milevski <info@w8r.name>
  * @preserve
  */
+
+
+L.Editable.include({
+
+
+  options: L.Util.extend(L.Editable.prototype.options, {
+    dragging: true
+  }),
+
+
+  /* eslint-disable new-cap */
+  createPolyline: function (latlngs) {
+    var line = new this.options.polylineClass(latlngs, {
+      draggable: this.options.dragging,
+      editOptions: {
+        editTools: this
+      }
+    });
+    this.fireAndForward('editable:created', {layer: line});
+    return line;
+  },
+
+
+  createPolygon: function (latlngs) {
+    var polygon = new this.options.polygonClass(latlngs, {
+      draggable: this.options.dragging,
+      editOptions: {
+        editTools: this
+      }
+    });
+    this.fireAndForward('editable:created', {layer: polygon});
+    return polygon;
+  }
+  /* eslint-enable new-cap */
+
+});
+
+
 L.Editable.PathEditor.include({
+
+  options: {
+    dragging: true
+  },
 
   /**
    * Hooks dragging in
@@ -44,9 +86,7 @@ L.Editable.PathEditor.include({
   _onFeatureDragStart: function(evt) {
     this.fireAndForward('editable:shape:dragstart', evt);
     this.editLayer.clearLayers();
-    if (this.drawing()) {
-      this.endDrawing();
-    }
+    this.commitDrawing();
   },
 
 

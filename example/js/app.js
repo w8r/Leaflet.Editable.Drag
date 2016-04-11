@@ -62,27 +62,6 @@ L.NewMarkerControl = L.EditControl.extend({
   }
 });
 
-L.NewRectangleControl = L.EditControl.extend({
-  options: {
-    position: 'topleft',
-    callback: L.Util.bind(map.editTools.startRectangle, map.editTools),
-    kind: 'rectangle',
-    draggable: true,
-    html: '⬛'
-  }
-});
-
-L.NewCircleControl = L.EditControl.extend({
-  options: {
-    position: 'topleft',
-    callback: L.Util.bind(map.editTools.startCircle, map.editTools),
-    kind: 'circle',
-    html: '⬤'
-  }
-});
-
 [
-  new L.NewMarkerControl(),
-  new L.NewLineControl(), new L.NewPolygonControl(),
-  new L.NewRectangleControl(), new L.NewCircleControl()
+  new L.NewMarkerControl(), new L.NewLineControl(), new L.NewPolygonControl()
 ].forEach(map.addControl, map);

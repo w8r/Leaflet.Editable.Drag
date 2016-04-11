@@ -1,6 +1,6 @@
 {
   "name": "leaflet-editable-drag",
-  "version": "1.0.0-beta.1",
+  "version": "0.7.0",
   "description": "drag functionality for leaflet-editable",
   "main": "index.js",
   "scripts": {
@@ -23,9 +23,9 @@
   "author": "Alexander Milevski <info@w8r.name>",
   "license": "MIT",
   "dependencies": {
-    "leaflet": "^1.0.0-beta.2",
-    "leaflet-editable": "github:leaflet/Leaflet.Editable#gh-pages",
-    "leaflet-path-drag": "^1.0.0-beta.3"
+    "leaflet": "^0.7.7",
+    "leaflet-editable": "^0.6.2",
+    "leaflet-path-drag": "^0.1.15"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
