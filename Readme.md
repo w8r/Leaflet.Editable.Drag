@@ -1,6 +1,6 @@
 # Leaflet.Editable.Drag [![npm version](https://badge.fury.io/js/leaflet-editable-drag.svg)](http://badge.fury.io/js/leaflet-editable-drag)
 
-Feature dragging functionality for [Leaflet.Ediatble](https://github.com/Leaflet/Leaflet.Editable)
+Feature dragging functionality for [Leaflet.Editable](https://github.com/Leaflet/Leaflet.Editable)
 
 #### Usage
 
