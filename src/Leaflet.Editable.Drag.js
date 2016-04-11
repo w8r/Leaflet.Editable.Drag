@@ -1,5 +1,15 @@
+/**
+ * Leaflet.Editable extension for dragging
+ * @author Alexander Milevski <info@w8r.name>
+ * @preserve
+ */
 L.Editable.PathEditor.include({
 
+  /**
+   * Hooks dragging in
+   * @override
+   * @return {L.Editable.PathEditor}
+   */
   enable: function() {
     this._enable();
     this.feature
@@ -12,6 +22,10 @@ L.Editable.PathEditor.include({
   _enable: L.Editable.PathEditor.prototype.enable,
 
 
+  /**
+   * @override
+   * @return {L.Editable.PathEditor}
+   */
   disable: function() {
     this._disable();
     this.feature
@@ -23,21 +37,40 @@ L.Editable.PathEditor.include({
   _disable: L.Editable.PathEditor.prototype.disable,
 
 
+  /**
+   * Basically, remove the vertices
+   * @param  {Event} evt
+   */
   _onFeatureDragStart: function(evt) {
     this.fireAndForward('editable:shape:dragstart', evt);
     this.editLayer.clearLayers();
-    if(this.drawing()) this.endDrawing();
+    if (this.drawing()) {
+      this.endDrawing();
+    }
   },
 
 
+  /**
+   * Just propagate the event
+   * @param  {Event} evt
+   */
   _onFeatureDrag: function(evt) {
     this.fireAndForward('editable:shape:drag', evt);
   },
 
 
+  /**
+   * Just propagate the event
+   * @param  {Event} evt
+   */
   _onFeatureDragEnd: function(evt) {
     this.fireAndForward('editable:shape:dragend', evt);
     this.initVertexMarkers();
+
+    // for the circle
+    if (typeof this.updateResizeLatLng === 'function') {
+      this.updateResizeLatLng();
+    }
   }
 
 });

@@ -42,3 +42,7 @@ h2, h3 {
 }
 
 #controls .github-button { color: #fff; }
+
+.leaflet-path-draggable {
+  cursor: move;
+}

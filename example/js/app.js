@@ -1,11 +1,12 @@
 var editable = require('../../');
 var MAPBOX_TOKEN = 'pk.eyJ1IjoidzhyIiwiYSI6IlF2Nlh6QVkifQ.D7BkmeoMI7GEkMDtg3durw';
+
 var map = global.map = L.map('map', {
   editable: true
 }).setView([31.2352, 121.4942], 15);
-var osm = new L.TileLayer(
-  'https://a.tiles.mapbox.com/v4/mapbox.streets-basic/{z}/{x}/{y}.png?access_token=' + MAPBOX_TOKEN);
-map.addLayer(osm);
+map.addLayer(new L.TileLayer(
+  'https://a.tiles.mapbox.com/v4/mapbox.streets-basic/{z}/{x}/{y}.png?access_token=' + MAPBOX_TOKEN)
+);
 
 L.EditControl = L.Control.extend({
   options: {
@@ -25,7 +26,7 @@ L.EditControl = L.Control.extend({
     L.DomEvent
       .on(link, 'click', L.DomEvent.stop)
       .on(link, 'click', function () {
-        window.LAYER = this.options.callback.call(map.editTools, null, {
+        window.LAYER = this.options.callback(null, {
           draggable: true
         });
     }, this);
@@ -37,7 +38,7 @@ L.EditControl = L.Control.extend({
 L.NewLineControl = L.EditControl.extend({
   options: {
     position: 'topleft',
-    callback: map.editTools.startPolyline,
+    callback: L.Util.bind(map.editTools.startPolyline, map.editTools),
     kind: 'line',
     html: '\\/\\'
   }
@@ -46,7 +47,7 @@ L.NewLineControl = L.EditControl.extend({
 L.NewPolygonControl = L.EditControl.extend({
   options: {
     position: 'topleft',
-    callback: map.editTools.startPolygon,
+    callback: L.Util.bind(map.editTools.startPolygon, map.editTools),
     kind: 'polygon',
     html: '▰'
   }
@@ -55,7 +56,7 @@ L.NewPolygonControl = L.EditControl.extend({
 L.NewMarkerControl = L.EditControl.extend({
   options: {
     position: 'topleft',
-    callback: map.editTools.startMarker,
+    callback: L.Util.bind(map.editTools.startMarker, map.editTools),
     kind: 'marker',
     html: '🖈'
   }
@@ -64,7 +65,7 @@ L.NewMarkerControl = L.EditControl.extend({
 L.NewRectangleControl = L.EditControl.extend({
   options: {
     position: 'topleft',
-    callback: map.editTools.startRectangle,
+    callback: L.Util.bind(map.editTools.startRectangle, map.editTools),
     kind: 'rectangle',
     draggable: true,
     html: '⬛'
@@ -74,7 +75,7 @@ L.NewRectangleControl = L.EditControl.extend({
 L.NewCircleControl = L.EditControl.extend({
   options: {
     position: 'topleft',
-    callback: map.editTools.startCircle,
+    callback: L.Util.bind(map.editTools.startCircle, map.editTools),
     kind: 'circle',
     html: '⬤'
   }
