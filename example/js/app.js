@@ -84,3 +84,7 @@ L.NewCircleControl = L.EditControl.extend({
   new L.NewLineControl(), new L.NewPolygonControl(),
   new L.NewRectangleControl(), new L.NewCircleControl()
 ].forEach(map.addControl, map);
+
+
+L.rectangle(map.getBounds().pad(-0.25), {draggable: true}).addTo(map)
+map.on('click', function(evt) { console.log('click', evt); });
