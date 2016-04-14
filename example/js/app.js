@@ -26,9 +26,7 @@ L.EditControl = L.Control.extend({
     L.DomEvent
       .on(link, 'click', L.DomEvent.stop)
       .on(link, 'click', function () {
-        window.LAYER = this.options.callback(null, {
-          draggable: true
-        });
+        window.LAYER = this.options.callback(null, {});
     }, this);
 
     return container;

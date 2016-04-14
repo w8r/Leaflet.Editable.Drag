@@ -12,6 +12,10 @@ L.Editable.PathEditor.include({
    */
   enable: function() {
     this._enable();
+    if (!this.feature.dragging) {
+      L.Handler.PathDrag.makeDraggable(this.feature);
+    }
+    this.feature.dragging.enable();
     this.feature
       .on('dragstart', this._onFeatureDragStart, this)
       .on('drag',      this._onFeatureDrag,      this)
@@ -27,6 +31,7 @@ L.Editable.PathEditor.include({
    * @return {L.Editable.PathEditor}
    */
   disable: function() {
+    this.feature.dragging.disable();
     this._disable();
     this.feature
       .off('dragstart', this._onFeatureDragStart, this)
