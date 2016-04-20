@@ -1,6 +1,6 @@
 {
   "name": "leaflet-editable-drag",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "drag functionality for leaflet-editable",
   "main": "index.js",
   "scripts": {
